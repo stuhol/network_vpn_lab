@@ -1,0 +1,33 @@
+version: "3"
+services:
+    cat_host:
+      build: ./vpn_host
+      hostname: cat_host
+      networks:
+        - catnet
+      cap_add: 
+        - NET_ADMIN
+      tty: true
+
+    dog_host:
+      build: ./vpn_host
+      hostname: dog_host
+      networks:
+        - dognet
+      cap_add:
+        - NET_ADMIN
+      tty: true
+    
+    is_router:
+      build: ./is_router
+      hostname: is_router
+      networks:
+        - catnet
+        - dognet
+      cap_add:
+        - NET_ADMIN
+      tty: true
+
+networks:
+  catnet:
+  dognet:
