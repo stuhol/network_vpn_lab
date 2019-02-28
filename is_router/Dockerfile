@@ -1,12 +1,15 @@
-FROM alpine
+FROM ubuntu
 
 # Update apk and install iptables
-RUN apk update && \
-    apk add iptables \ 
-        tcpdump
+RUN apt update && \
+    apt install -y iproute2 \
+        net-tools \
+        iptables \ 
+        tcpdump \
+	    nano
 
 COPY fluship.sh /root/
 
-RUN echo /root/fluship.sh >> /etc/profile
+RUN echo source /root/fluship.sh >> /root/.bashrc
 
-ENTRYPOINT /bin/sh
+ENTRYPOINT [ "/bin/bash" ]

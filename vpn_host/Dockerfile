@@ -7,13 +7,16 @@ RUN     echo "Installing required packages to download Strongswan" && \
         apt install -y build-essential \
             ca-certificates \
             wget \
+	        nano \
+            iproute2 \
             net-tools \
             iputils-ping \
             libgmp-dev \
             libcap2 \
             libcap-dev \
-            libssl-dev && \
-        echo "Downloading and extracting Strongswan" && \
+            libssl-dev 
+
+RUN     echo "Downloading and extracting Strongswan" && \
         cd /opt && \
         wget -O strongswan.tar.gz $STRONGSWAN_URL && \
         tar xvf strongswan.tar.gz && \
@@ -38,11 +41,11 @@ RUN     echo "Installing required packages to download Strongswan" && \
 
 COPY fluship.sh /root/
 
-RUN echo /root/fluship.sh >> /root/.bashrc
+RUN echo source /root/fluship.sh >> /root/.bashrc
+
+ENTRYPOINT [ "/bin/bash" ]
 
 VOLUME /opt/pki
-
-ENTRYPOINT /bin/bash
 	
 EXPOSE  500/udp \
         4500/udp 

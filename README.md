@@ -65,7 +65,7 @@ Open three seperate terminal windows and connect to each of our containers
 ```
 docker exec -ti network_vpn_lab_cat_host_1 bash
 docker exec -ti network_vpn_lab_dog_host_1 bash
-docker exec -ti network_vpn_lab_is_router_1 sh -l
+docker exec -ti network_vpn_lab_is_router_1 bash
 ```
 
 Great! We're now ready to start
